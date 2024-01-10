@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.StringUtils;
 
+/**
+ * {@inheritDoc}
+ */
 public class RowFactoryImpl implements RowFactory {
 
     private static final DateTimeFormatter DATE_HEADER_FORMATTER
@@ -22,8 +26,8 @@ public class RowFactoryImpl implements RowFactory {
     private static final String INVENTORY_NAME_HEADER = "Inventory name";
     private static final String TOTAL_COST_HEADER = "Total cost";
     private static final int DATES_HEADER_DIFF_IN_MONTHS = 1;
-    private final static int DIGITS_NUMBER_AFTER_DECIMAL_POINT_IN_PRICE = 2;
-    private final static int COLUMNS_COUNT_BEFORE_DATES_HEADER = 1;
+    private static final int DIGITS_NUMBER_AFTER_DECIMAL_POINT_IN_PRICE = 2;
+    private static final int COLUMNS_COUNT_BEFORE_DATES_HEADER = 1;
 
     @Override
     public List<Row> generateRows(AmortizedInventoryContext context) {
@@ -132,7 +136,9 @@ public class RowFactoryImpl implements RowFactory {
         var convertedTotalCostByMonth = new String[totalCostByMonth.length];
 
         for (var i = FIRST_COLUMN_IDX; i < totalCostByMonth.length; i++) {
-            convertedTotalCostByMonth[i] = String.valueOf(totalCostByMonth[i]);
+            convertedTotalCostByMonth[i] = totalCostByMonth[i] == null
+                ? StringUtils.EMPTY
+                : String.valueOf(totalCostByMonth[i]);
         }
         convertedTotalCostByMonth[FIRST_COLUMN_IDX] = TOTAL_COST_HEADER;
 
