@@ -11,20 +11,26 @@ repositories {
 }
 
 ext {
-    lombokVersion = '1.18.24'
+    lombokVersion = '1.18.26'
     opencsvVersion = '5.3'
-    commonsCliVersion = '1.4'
+    commonsCliVersion = '1.5.0'
+    junitVersion = '5.9.2'
+    slf4jVersion = '1.7.26'
+    logbackVersion = '1.4.7'
 }
 
 dependencies {
     implementation "com.opencsv:opencsv:$opencsvVersion"
     implementation "commons-cli:commons-cli:$commonsCliVersion"
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "ch.qos.logback:logback-core:$logbackVersion"
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
 
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 
     testCompileOnly "org.projectlombok:lombok:$lombokVersion"
     testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
@@ -32,4 +38,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.syberry.calculator.AmortizedCostCalculator"
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
