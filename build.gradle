@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'com.syberry'
+version '1.0'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    lombokVersion = '1.18.24'
+    opencsvVersion = '5.3'
+    commonsCliVersion = '1.4'
+}
+
+dependencies {
+    implementation "com.opencsv:opencsv:$opencsvVersion"
+    implementation "commons-cli:commons-cli:$commonsCliVersion"
+
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
