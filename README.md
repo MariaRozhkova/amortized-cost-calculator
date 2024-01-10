@@ -31,3 +31,4 @@ java -jar amortized-cost-calculator-1.0.jar --inputFilePath D:\input.csv --outpu
   service period, price. All of them are required.
 - If input file does not contain inventories, exception will be thrown.
 - If result.csv file with amortized inventory cost by month results already exist, it will be overridden.
+- Last row in result file contains info about total amortized cost by month for all inventories

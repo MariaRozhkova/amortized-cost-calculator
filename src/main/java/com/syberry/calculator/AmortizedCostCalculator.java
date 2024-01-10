@@ -11,13 +11,11 @@ import com.syberry.calculator.validators.impl.InventoryValidatorImpl;
 import com.syberry.calculator.writers.AmortizedInventoryWriter;
 import com.syberry.calculator.writers.impl.AmortizedInventoryCsvWriter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Main class to launch amortized cost calculator.
  */
 @RequiredArgsConstructor
-@Slf4j
 public class AmortizedCostCalculator {
 
     private final InventoryReader inventoryReader;
