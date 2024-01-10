@@ -8,9 +8,11 @@ linear method.
 Run service from IDE:
 Run `AmortizedCostCalculator` from IDE with specified `inputFilePath` and `outputDir` command 
 line args.
-As a result of application run generated csv file will be stored in outputDir.
+Result of application run is csv file stored in outputDir.
 
 Run service from terminal:
+
+build jar using gradle and then run:
 ```console
 java -jar amortized-cost-calculator-1.0.jar --inputFilePath D:\input.csv --outputDir D:\output
 ```
@@ -27,5 +29,5 @@ java -jar amortized-cost-calculator-1.0.jar --inputFilePath D:\input.csv --outpu
 - Amortized cost is initial cost minus accumulated amortization for previous months. 
 - Input csv file with inventories has to contain header with values in any order: name, purchase date,
   service period, price. All of them are required.
-- If input file does not contain inventories exception will be thrown.
+- If input file does not contain inventories, exception will be thrown.
 - If result.csv file with amortized inventory cost by month results already exist, it will be overridden.
